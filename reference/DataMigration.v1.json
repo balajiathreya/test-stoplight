@@ -1,0 +1,106 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "DataMigration",
+    "version": "1.0",
+    "contact": {},
+    "description": ""
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/data/migrate": {
+      "parameters": [],
+      "post": {
+        "summary": "",
+        "operationId": "post-data-migrate",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseOutput"
+                }
+              }
+            }
+          }
+        },
+        "description": "Test description  ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "domain": {
+                    "type": "string",
+                    "minLength": 1,
+                    "readOnly": true
+                  },
+                  "limit": {
+                    "type": "number"
+                  },
+                  "concurrent_threads": {
+                    "type": "number"
+                  },
+                  "key": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "plaintext": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "limit",
+                  "concurrent_threads",
+                  "key",
+                  "plaintext"
+                ]
+              },
+              "examples": {}
+            }
+          },
+          "description": "Test request body description"
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ResponseOutput": {
+        "description": "Test description",
+        "type": "object",
+        "properties": {
+          "statusMap": {
+            "type": "object"
+          },
+          "body": {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "required": [
+          "statusMap"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "API Key - 1": {
+        "name": "API Key",
+        "type": "apiKey",
+        "in": "query"
+      }
+    }
+  }
+}
